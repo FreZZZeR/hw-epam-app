@@ -10,8 +10,8 @@ pipeline {
   }
   environment {
         PROJECT_ID = 'hw-epam-cicd'
-        CLUSTER_NAME = 'cluster-1'
-        LOCATION = 'hw-epam-cicd-gke'
+        CLUSTER_NAME = 'hw-epam-cicd-gke'
+        LOCATION = 'europe-west3-b'
         CREDENTIALS_ID = 'hw-epam-cicd'
   }
   stages {
