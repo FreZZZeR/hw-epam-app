@@ -9,10 +9,10 @@ pipeline {
     }
   }
   environment {
-        PROJECT_ID = 'engaged-yen-293214'
+        PROJECT_ID = 'hw-epam-cicd'
         CLUSTER_NAME = 'cluster-1'
-        LOCATION = 'europe-north1-a'
-        CREDENTIALS_ID = 'engaged-yen-293214'
+        LOCATION = 'hw-epam-cicd-gke'
+        CREDENTIALS_ID = 'hw-epam-cicd'
   }
   stages {
     stage('Docker Push') {
@@ -28,7 +28,7 @@ pipeline {
             }
             sh "sed -i 's/__TAG__/${tag}/g' app/templates/index.html"
             docker.withRegistry('https://eu.gcr.io', 'gcr:registry') {
-              def image = docker.build("engaged-yen-293214/testapp:${tag}")
+              def image = docker.build("hw-epam-cicd/testapp:${tag}")
               image.push("${tag}")
               if (release) {
                 image.push("latest")
