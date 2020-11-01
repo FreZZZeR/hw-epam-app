@@ -1,5 +1,5 @@
-def tag = ''
-def release = false
+//def tag = ''
+//def release = false
 
 
 pipeline {
@@ -19,7 +19,7 @@ pipeline {
       steps {
       	container('docker') {
           script {
-            sh "sed -i 's/__TAG__/${env.BUILD_NUMBER}/g' app/templates/index.html"
+            //sh "sed -i 's/__TAG__/${env.BUILD_NUMBER}/g' app/templates/index.html"
             docker.withRegistry('https://eu.gcr.io', 'gcr:registry') {
               def image = docker.build("hw-epam-cicd/testapp:${env.BUILD_NUMBER}")
               image.push("${env.BUILD_NUMBER}")
@@ -31,14 +31,14 @@ pipeline {
     stage('Deploy') {
       steps{
 	      container('kubectl') {
-          sh "sed -i 's/__TAG__/${env.BUILD_NUMBER}/g' k8s/manifest.yaml"
+          //sh "sed -i 's/__TAG__/${env.BUILD_NUMBER}/g' k8s/manifest.yaml"
           step([
             $class: 'KubernetesEngineBuilder',
             projectId: env.PROJECT_ID,
             clusterName: env.CLUSTER_NAME,
             location: env.LOCATION,
             manifestPattern: 'k8s/manifest.yaml',
-            namespace: release ? 'test-epam-hw-cicd' : 'dev-epam-hw-cicd',
+            namespace: "test-epam-hw-cicd",//release ? 'test-epam-hw-cicd' : 'dev-epam-hw-cicd',
             credentialsId: env.CREDENTIALS_ID,
             verifyDeployments: true
           ])
