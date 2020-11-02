@@ -25,7 +25,7 @@ pipeline {
             //} else {
               tag = env.BUILD_ID
               release = false
-            }
+            //}
             sh "sed -i 's/__TAG__/${tag}/g' app/templates/index.html"
             docker.withRegistry('https://eu.gcr.io', 'gcr:registry') {
               def image = docker.build("hw-epam-cicd/testapp:${tag}")
