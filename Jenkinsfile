@@ -19,10 +19,10 @@ pipeline {
       steps {
         container('docker') {
           script {
-            if (env.gitlabBranch.contains('refs/tags')) {
-              tag = env.gitlabBranch.replace('refs/tags/','')
-              release = true
-            } else {
+            //if (env.gitlabBranch.contains('refs/tags')) {
+            //  tag = env.gitlabBranch.replace('refs/tags/','')
+            //  release = true
+            //} else {
               tag = env.BUILD_ID
               release = false
             }
