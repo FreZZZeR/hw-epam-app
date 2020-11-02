@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: main
-        image: eu.gcr.io/hw-epam-cicd/testapp:__TAG__
+        image: eu.gcr.io/hw-epam-cicd/testapp:__TAG__ #HOW TO PULL FROM PRIVATE REGISTRY?
         ports:
         - containerPort: 5000
 ---
