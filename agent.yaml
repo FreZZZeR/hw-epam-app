@@ -20,14 +20,14 @@ spec:
     - cat
     tty: true
   - name: docker
-    image: docker:19.03-dind
+    image: docker:19.03.13-dind
     command:
     - dockerd
     args:
     - --host=unix:///var/run/docker.sock
-    #- --storage-driver=overlay
-    #- --insecure-registry
-    #- nexus:8086
+    - --storage-driver=overlay
+    - --insecure-registry
+    - nexus:8086
     tty: true
     securityContext:
       privileged: true
