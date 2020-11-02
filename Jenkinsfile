@@ -27,7 +27,7 @@ pipeline {
               release = false
             //}
             sh "sed -i 's/__TAG__/${tag}/g' app/templates/index.html"
-            docker.withRegistry('https://eu.gcr.io', 'gcr:registry') {
+            docker.withRegistry('https://eu.gcr.io', 'gcr:hw-epam-cicd') {
               def image = docker.build("hw-epam-cicd/testapp:${tag}")
               image.push("${tag}")
               if (release) {
